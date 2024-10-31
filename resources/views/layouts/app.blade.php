@@ -27,7 +27,7 @@
                                 <a class="nav-link" href="{{ route('admin.artists.index') }}">Artisti</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link 3</a>
+                                <a class="nav-link" href="{{ route('admin.albums.index') }}">Album</a>
                             </li>
                         </ul>
                         <form method="POST" action="{{ route('logout') }}">

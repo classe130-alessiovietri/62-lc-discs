@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', $artist->name)
+@section('page-title', $album->name)
 
 @section('main-content')
     <div class="row">
@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-success">
-                        {{ $artist->name }}
+                        {{ $album->name }}
                     </h1>
                 </div>
             </div>
@@ -20,26 +20,22 @@
                 <div class="card-body">
                     <ul class="mb-0">
                         <li>
-                            ID: {{ $artist->id }}
+                            ID: {{ $album->id }}
                         </li>
                         <li>
-                            Nome: {{ $artist->nome }}
+                            Nome: {{ $album->nome }}
                         </li>
                         <li>
-                            Creato il: {{ $artist->created_at->format('d/m/Y') }}
+                            Slug: {{ $album->slug }}
                         </li>
                         <li>
-                            Album pubblicati:
-
-                            <ul>
-                                @foreach ($artist->albums as $album)
-                                    <li>
-                                        <a href="{{ route('admin.albums.show', ['album' => $album->id]) }}">
-                                            {{ $album->name }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                            Artista:
+                            <a href="{{ route('admin.artists.show', ['artist' => $album->artist->id]) }}">
+                                {{ $album->artist->name }}
+                            </a>
+                        </li>
+                        <li>
+                            Creato il: {{ $album->created_at->format('d/m/Y') }}
                         </li>
                     </ul>
                 </div>
