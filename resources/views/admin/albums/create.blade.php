@@ -37,6 +37,20 @@
                             </select>
                         </div>
 
+                        <div class="mb-3">
+                            <div>
+                                <label class="form-label">Generi</label>
+                            </div>
+                            @foreach ($genres as $genre)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="genre-{{ $genre->id }}" name="genres[]" value="{{ $genre->id }}">
+                                    <label class="form-check-label" for="genre-{{ $genre->id }}">
+                                        {{ $genre->name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+
                         <div>
                             <button type="submit" class="btn btn-success w-100">
                                 + Aggiungi

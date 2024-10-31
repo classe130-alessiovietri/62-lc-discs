@@ -62,6 +62,13 @@
                                         <a href="{{ route('admin.albums.edit', ['album' => $album->id]) }}" class="btn btn-sm btn-warning">
                                             Modifica
                                         </a>
+                                        <form class="d-inline-block" action="{{ route('admin.albums.destroy', ['album' => $album->id]) }}" method="POST" onsubmit="return confirm('Sei sicur* di voler eliminare questo album?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                Elimina
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -8,7 +8,8 @@ use App\Http\Controllers\Controller;
 // Models
 use App\Models\{
     Album,
-    Artist
+    Artist,
+    Genre
 };
 
 class AlbumController extends Controller
@@ -29,8 +30,9 @@ class AlbumController extends Controller
     public function create()
     {
         $artists = Artist::get();
+        $genres = Genre::get();
 
-        return view('admin.albums.create', compact('artists'));
+        return view('admin.albums.create', compact('artists', 'genres'));
     }
 
     /**
@@ -41,11 +43,14 @@ class AlbumController extends Controller
         $data = $request->validate([
             'name' => 'required|max:64',
             'artist_id' => 'required|exists:artists,id',
+            'genres' => 'nullable|array|exists:genres,id',
         ]);
 
         $data['slug'] = str()->slug($data['name']);
 
         $album = Album::create($data);
+
+        $album->genres()->sync($data['genres'] ?? []);
 
         return redirect()->route('admin.albums.show', ['album' => $album->id]);
     }
@@ -64,8 +69,9 @@ class AlbumController extends Controller
     public function edit(Album $album)
     {
         $artists = Artist::get();
+        $genres = Genre::get();
 
-        return view('admin.albums.edit', compact('album', 'artists'));
+        return view('admin.albums.edit', compact('album', 'artists', 'genres'));
     }
 
     /**
@@ -76,11 +82,14 @@ class AlbumController extends Controller
         $data = $request->validate([
             'name' => 'required|max:64',
             'artist_id' => 'required|exists:artists,id',
+            'genres' => 'nullable|array|exists:genres,id',
         ]);
 
         $data['slug'] = str()->slug($data['name']);
 
         $album->update($data);
+
+        $album->genres()->sync($data['genres'] ?? []);
 
         return redirect()->route('admin.albums.show', ['album' => $album->id]);
     }
