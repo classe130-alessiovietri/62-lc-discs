@@ -23,7 +23,7 @@
                             ID: {{ $artist->id }}
                         </li>
                         <li>
-                            Nome: {{ $artist->nome }}
+                            Nome: {{ $artist->name }}
                         </li>
                         <li>
                             Creato il: {{ $artist->created_at->format('d/m/Y') }}

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 // Models
-use App\Models\Album;
+use App\Models\{
+    Album,
+    Artist
+};
 
 class AlbumController extends Controller
 {
@@ -25,7 +28,9 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        return view('admin.albums.create');
+        $artists = Artist::get();
+
+        return view('admin.albums.create', compact('artists'));
     }
 
     /**
@@ -33,7 +38,14 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $data = $request->validate([
+            'name' => 'required|max:64',
+            'artist_id' => 'required|exists:artists,id',
+        ]);
+
+        $data['slug'] = str()->slug($data['name']);
+
+        $album = Album::create($data);
 
         return redirect()->route('admin.albums.show', ['album' => $album->id]);
     }
@@ -51,7 +63,9 @@ class AlbumController extends Controller
      */
     public function edit(Album $album)
     {
-        return view('admin.albums.edit', compact('album'));
+        $artists = Artist::get();
+
+        return view('admin.albums.edit', compact('album', 'artists'));
     }
 
     /**
@@ -59,7 +73,14 @@ class AlbumController extends Controller
      */
     public function update(Request $request, Album $album)
     {
-        dd($request->all());
+        $data = $request->validate([
+            'name' => 'required|max:64',
+            'artist_id' => 'required|exists:artists,id',
+        ]);
+
+        $data['slug'] = str()->slug($data['name']);
+
+        $album->update($data);
 
         return redirect()->route('admin.albums.show', ['album' => $album->id]);
     }

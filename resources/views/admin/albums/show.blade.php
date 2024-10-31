@@ -23,7 +23,7 @@
                             ID: {{ $album->id }}
                         </li>
                         <li>
-                            Nome: {{ $album->nome }}
+                            Nome: {{ $album->name }}
                         </li>
                         <li>
                             Slug: {{ $album->slug }}

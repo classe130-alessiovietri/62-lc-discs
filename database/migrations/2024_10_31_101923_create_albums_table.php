@@ -18,7 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('artist_id');
             $table->foreign('artist_id')
                     ->references('id')
-                    ->on('artists');
+                    ->on('artists')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

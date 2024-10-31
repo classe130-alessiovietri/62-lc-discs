@@ -16,6 +16,13 @@
     </div>
     <div class="row">
         <div class="col">
+            <a href="{{ route('admin.albums.create') }}" class="btn btn-success w-100">
+                + Aggiungi
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <div class="card">
                 <div class="card-body">
                     <table class="table">
@@ -43,6 +50,9 @@
                                     <td>
                                         <a href="{{ route('admin.albums.show', ['album' => $album->id]) }}" class="btn btn-sm btn-primary">
                                             Vedi
+                                        </a>
+                                        <a href="{{ route('admin.albums.edit', ['album' => $album->id]) }}" class="btn btn-sm btn-warning">
+                                            Modifica
                                         </a>
                                     </td>
                                 </tr>
