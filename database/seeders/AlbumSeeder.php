@@ -38,7 +38,8 @@ class AlbumSeeder extends Seeder
             ]);
 
             $genreIds = [];
-            for ($j = 0; $j < rand(0, Genre::count()); $j++) {
+            $genresCount = Genre::count();
+            for ($j = 0; $j < rand(0, $genresCount); $j++) {
                 $randomGenre = Genre::inRandomOrder()->first();
 
                 if (!in_array($randomGenre->id, $genreIds)) {
