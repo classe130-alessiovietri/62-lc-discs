@@ -35,6 +35,18 @@
                             </a>
                         </li>
                         <li>
+                            Generi:
+                            <ul>
+                                @foreach ($album->genres as $genre)
+                                    <li>
+                                        <a href="{{ route('admin.genres.show', ['genre' => $genre->id]) }}" class="badge rounded-pill text-bg-primary">
+                                            {{ $genre->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li>
                             Creato il: {{ $album->created_at->format('d/m/Y') }}
                         </li>
                     </ul>

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Genre extends Model
 {
     use HasFactory;
+
+    /*
+        Relationship
+    */
+    public function albums()
+    {
+        return $this->belongsToMany(Album::class);
+    }
 }

@@ -31,6 +31,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Artista</th>
+                                <th scope="col">Generi</th>
                                 <th scope="col">Azioni</th>
                             </tr>
                         </thead>
@@ -46,6 +47,13 @@
                                         {{-- <a href="{{ route('admin.artists.show', ['artist' => $album->artist_id]) }}">
                                             {{ $album->artist->name }}
                                         </a> --}}
+                                    </td>
+                                    <td>
+                                        @foreach ($album->genres as $genre)
+                                            <a href="{{ route('admin.genres.show', ['genre' => $genre->id]) }}" class="badge rounded-pill text-bg-primary">
+                                                {{ $genre->name }}
+                                            </a>
+                                        @endforeach
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.albums.show', ['album' => $album->id]) }}" class="btn btn-sm btn-primary">

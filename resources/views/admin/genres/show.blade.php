@@ -28,7 +28,7 @@
                         <li>
                             Creato il: {{ $genre->created_at->format('d/m/Y') }}
                         </li>
-                        {{-- <li>
+                        <li>
                             Album collegati:
 
                             <ul>
@@ -40,7 +40,7 @@
                                     </li>
                                 @endforeach
                             </ul>
-                        </li> --}}
+                        </li>
                     </ul>
                 </div>
             </div>

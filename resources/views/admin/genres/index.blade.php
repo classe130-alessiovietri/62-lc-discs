@@ -33,7 +33,7 @@
                                     <th scope="row">{{ $genre->id }}</th>
                                     <td>{{ $genre->name }}</td>
                                     <td>
-                                        {{-- {{ $genre->albums()->count() }} --}}
+                                        {{ $genre->albums()->count() }}
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.genres.show', ['genre' => $genre->id]) }}" class="btn btn-sm btn-primary">
